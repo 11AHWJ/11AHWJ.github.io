@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>11AHWJ</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #000000;
+        overflow: hidden;
+        transform-style: preserve-3d;
+        perspective: 1500px;
+        animation-delay: 5s;
+
+    }
+
+    .tree {
+        width: 60vw;
+        height: 60vh;
+        position: relative;
+        transform-style: preserve-3d;
+        animation: up 2s linear infinite;
+        animation-delay: 5s;
+
+    }
+
+    .tree-light {
+        transform-style: preserve-3d;
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 60%;
+        left: 50%;
+        bottom: calc(var(--y) * 1%);
+        transform: translate(-50%, 50%) rotateY(calc(var(--rotate, 0) * 1deg)) translate3d(0, 0, calc(var(--radius, 0) * 8px));
+        animation: flash calc(var(--speed) * 0.6s) calc(var(--delay) * 1s) infinite,
+            appear 0.5s calc(var(--appear) * 0.05s);
+        animation-delay: 5s;
+
+    }
+
+    .tree-star {
+        stroke: #ffffff;
+        stroke-dasharray: 1000 1000;
+        width: 32px;
+        height: 32px;
+        filter: drop-shadow(0 0 100px #fcf1cf);
+        position: absolute;
+        left: 50%;
+        bottom: 100%;
+        transform: translate(-50%, 0);
+        animation: stroke 1s calc((var(--delay) * 0.95) * 0.05s) backwards;
+
+    }
+
+
+    .giftQZY {
+        position: absolute;
+        left: 50%;
+        top: -20%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 20px;
+        text-align: center;
+        opacity: 0;
+        animation: showMessage 2s forwards;
+        animation-delay: 4s;
+    }
+
+    @keyframes showMessage {
+        to {
+            opacity: 1;
+        }
+        
+    }
+
+    @keyframes appear {
+        from {
+            opacity: 0;
+        }
+    }
+
+    @keyframes flash {
+
+        0%,
+        100% {
+            background-color: #4f60f6;
+        }
+
+        20% {
+            background-color: #ffffff;
+        }
+
+        40% {
+            background-color: #006eff;
+        }
+
+        60% {
+            background-color: #ffffff;
+        }
+
+        80% {
+            background-color: #006eff;
+        }
+    }
+
+    @keyframes up {
+        to {
+            transform: rotateY(360deg);
+        }
+    }
+
+    @keyframes stroke {
+        from {
+            stroke-dashoffset: -1000;
+        }
+    }
+</style>
+
+
+<body>
+    <div class="tree">
+        <div class="tree-light" v-for="(item,index) in 50"
+            :style="{'--appear':index,'--y':2*index,'--rotate':1440-28.8*index,'--radius':12.5-0.25*index,'--speed':index*0.1,'--delay':index*0.05}">
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 113.32 108.44" class="tree-star" style="--delay:50;">
+            <path
+                d="M90.19 104.33L57.12 87.38 24.4 105l5.91-36.69L3.44 42.65l36.72-5.72 16.1-33.5L73.06 36.6l36.83 4.97-26.35 26.21z"
+                fill="none" stroke-width="6.88" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+        <div class="giftQZY" id="messageText">To清蒸鱼:<br>永远幸福 要一直开心下去^_^</div>
+    </div>
+
+
+    
+<script>
+
+    new Vue({
+        el: '.tree',
+        data: {}
+    })
+</script>
+  
+</body>
+
+
+</html>
+
